@@ -1,13 +1,25 @@
 package com.ironhack.model;
 
 import com.ironhack.enums.Industry;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
-
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
 public class Account {
 
     private static int counter = 1000;
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String companyName;
     private Industry industry;
@@ -16,15 +28,6 @@ public class Account {
     private String country;
     private ArrayList<Contact> contactList = new ArrayList<>();
 
-
-    public Account(Industry industry, int numberOfEmployees, String city, String country, String companyName) {
-        setId();
-        this.industry = industry;
-        this.numberOfEmployees = numberOfEmployees;
-        this.city = city;
-        this.country = country;
-        this.companyName = companyName;
-    }
     public Account(String companyName){
         setId();
         this.companyName = companyName;
