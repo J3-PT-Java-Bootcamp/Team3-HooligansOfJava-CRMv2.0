@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -19,10 +16,18 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+
     private String name;
+
     private String phoneNumber;
+
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     public static Contact fromDTO(ContactDTO dto){
         var entity = new Contact();

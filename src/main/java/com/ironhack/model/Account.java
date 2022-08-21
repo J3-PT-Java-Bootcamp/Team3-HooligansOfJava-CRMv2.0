@@ -1,79 +1,55 @@
 package com.ironhack.model;
 
+import com.ironhack.dto.AccountDTO;
+import com.ironhack.dto.ContactDTO;
 import com.ironhack.enums.Industry;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 public class Account {
 
-    private static int counter = 1000;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String companyName;
+
+    @Enumerated(EnumType.STRING)
     private Industry industry;
-    private int numberOfEmployees;
+
+    private int employeeCount;
+
     private String city;
+
     private String country;
-    private ArrayList<Contact> contactList = new ArrayList<>();
 
-    public Account(String companyName){
-        setId();
-        this.companyName = companyName;
-    }
+    @OneToMany(mappedBy = "account")
+    private List<Contact> contacts;
 
-    public void setIndustry(Industry industry) {
-        this.industry = industry;
-    }
-    public String getCompanyName() {
-        return companyName;
-    }
+    @OneToOne
+    @JoinColumn(name = "opportunity_id")
+    private Opportunity opportunities;
 
-    public void setNumberOfEmployees(int numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
-    }
+    public static Account fromDTO(AccountDTO dto){
+        var entity = new Account();
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+        entity.setId(dto.getId());
+        entity.setCompanyName(dto.getCompanyName());
+        entity.setIndustry(dto.getIndustry());
+        entity.setEmployeeCount(dto.getEmployeeCount());
+        entity.setCity(dto.getCity());
+        entity.setCountry(dto.getCountry());
+        entity.setOpportunities(entity.getOpportunities());
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setContactList(ArrayList<Contact> contactList) {
-        this.contactList = contactList;
-    }
-
-    public void setId() {
-        this.id = counter++;
-    }
-
-
-    public void addContactToList(Contact contact) {
-        contactList.add(contact);
-    }
-
-
-    @Override
-    public String toString() {
-        return "Account: " + id + '\n' +
-                "Industry: " + industry + '\n' +
-                "Employees: " + numberOfEmployees + '\n' +
-                "City: " + city + '\n' +
-                "Country: " + country + '\n' +
-                "ContactList: " + contactList + '\n' +
-                "CompanyName: " + companyName + '\n';
+        return entity;
     }
 }

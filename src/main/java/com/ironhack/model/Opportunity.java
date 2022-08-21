@@ -29,6 +29,7 @@ public class Opportunity {
     private List<Product> products; // product & quantity
 
     @OneToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
     public static Opportunity fromDTO(OpportunityDTO dto){
