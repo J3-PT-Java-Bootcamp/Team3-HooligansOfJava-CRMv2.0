@@ -24,5 +24,6 @@ public class LeadDTO {
         dto.setCompanyName(entity.getCompanyName());
 
         return dto;
+
     }
 }
