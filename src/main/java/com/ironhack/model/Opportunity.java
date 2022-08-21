@@ -1,57 +1,40 @@
 package com.ironhack.model;
 
+import com.ironhack.dto.OpportunityDTO;
 import com.ironhack.enums.OpportunityStatus;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
-import static com.ironhack.enums.OpportunityStatus.OPEN;
 
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
 public class Opportunity {
-    private static int counter = 1;
-    private int id;
-    private final ArrayList<Product> productList;
-    private final Contact decisionMaker;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
+    private Contact decisionMaker;
+    @Enumerated(EnumType.STRING)
     private OpportunityStatus status;
-
+    @OneToMany
+    private List<Product> products; // product & quantity
+    @OneToOne
     private Account account;
 
+    public static Opportunity fromDTO(OpportunityDTO dto){
+        var entity = new Opportunity();
+        entity.setId(dto.getId());
+        entity.setDecisionMaker(dto.getDecisionMaker());
+        entity.setStatus(dto.getStatus());
 
-    public Opportunity(ArrayList<Product> productList, Contact decisionMaker) {
-        setId();
-        this.productList = productList;
-        this.decisionMaker = decisionMaker;
-        this.status = OPEN;
+        return entity;
+
     }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public OpportunityStatus getStatus() {
-        return status;
-    }
-
-    public void setId() {
-        this.id = counter++;
-    }
-
-    public void setStatus(OpportunityStatus status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Opportunity{" + "id=" + id + ", productList=" + productList + ", decisionMaker=" + decisionMaker.toString() + "," +
-                " status=" + status +'}' + "\n";
-    }
-
 
 }
