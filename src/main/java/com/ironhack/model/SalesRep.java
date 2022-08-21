@@ -1,5 +1,6 @@
 package com.ironhack.model;
 
+import com.ironhack.dto.SalesRepDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +24,12 @@ public class SalesRep {
 
     @OneToMany(mappedBy = "associatedSalesRep")
     private List<Opportunity> opportunities;
+
+    public static SalesRep fromDTO(SalesRepDTO dto){
+        var salesRep = new SalesRep();
+        salesRep.setId(dto.getId());
+        salesRep.setName(dto.getName());
+
+        return salesRep;
+    }
 }
