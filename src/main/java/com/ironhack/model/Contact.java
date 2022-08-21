@@ -1,48 +1,37 @@
 package com.ironhack.model;
 
+
+import com.ironhack.dto.ContactDTO;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
 public class Contact {
-    private static int count = 1;
-    private String contactId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String phoneNumber;
     private String email;
 
-    public Contact() {
+    public static Contact fromDTO(ContactDTO dto){
+        var entity = new Contact();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPhoneNumber(dto.getPhoneNumber());
+        entity.setEmail(dto.getEmail());
+
+        return entity;
     }
 
-    public Contact(Lead lead, LeadList leadList) {
-        setContactId();
-        setName(lead.getName());
-        setPhoneNumber(lead.getPhoneNumber());
-        setEmail(lead.getEmail());
-        leadList.removeLead(lead);
-    }
-
-    public void setContactId() {
-        this.contactId = "" + count++;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return  "ContactId: " + contactId + '\n' +
-                "Name: " + name + '\n' +
-                "PhoneNumber: " + phoneNumber + '\n' +
-                "Email: " + email;
-    }
 }
