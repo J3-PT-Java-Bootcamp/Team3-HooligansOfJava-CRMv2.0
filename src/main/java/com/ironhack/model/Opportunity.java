@@ -18,12 +18,16 @@ public class Opportunity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToOne
     private Contact decisionMaker;
+
     @Enumerated(EnumType.STRING)
     private OpportunityStatus status;
-    @OneToMany
+
+    @OneToMany(mappedBy = "opportunity")
     private List<Product> products; // product & quantity
+
     @OneToOne
     private Account account;
 
@@ -34,7 +38,5 @@ public class Opportunity {
         entity.setStatus(dto.getStatus());
 
         return entity;
-
     }
-
 }

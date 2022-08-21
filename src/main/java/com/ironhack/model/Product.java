@@ -1,20 +1,38 @@
 package com.ironhack.model;
 
+import com.ironhack.dto.ProductDTO;
 import com.ironhack.enums.TypeOfProduct;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
+@NoArgsConstructor
+@Getter
+@Setter
 public class Product {
+    @Id
+    private Long id;
 
-    final TypeOfProduct product;
-    final int quantity;
+    @Enumerated(EnumType.STRING)
+    private TypeOfProduct product;
 
-    public Product(TypeOfProduct product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "opportunity_id")
+    private Opportunity opportunity;
+
+    public Product fromDTO(ProductDTO dto){
+        var entity = new Product();
+        entity.setId(dto.getId());
+        entity.setProduct(dto.getProduct());
+        entity.setQuantity(dto.getQuantity());
+
+        return entity;
     }
 
-    @Override
-    public String toString() {
-        return  "Product: " + product +"\n"+
-                "Quantity: " + quantity;
-    }
+
 }
