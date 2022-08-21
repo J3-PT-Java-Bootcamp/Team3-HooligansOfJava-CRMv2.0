@@ -1,11 +1,12 @@
 package com.ironhack.dto;
 
+import com.ironhack.model.Lead;
+import com.ironhack.model.Opportunity;
 import com.ironhack.model.SalesRep;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
