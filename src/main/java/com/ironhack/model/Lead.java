@@ -1,20 +1,20 @@
 package com.ironhack.model;
 
 import com.ironhack.dto.LeadDTO;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 public class Lead {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +23,9 @@ public class Lead {
     private String email;
     private String companyName;
 
+    @ManyToOne
+    private SalesRep salesRep;
+
     public static Lead fromDTO(LeadDTO dto){
         var entity = new Lead();
         entity.setId(dto.getId());
@@ -30,6 +33,7 @@ public class Lead {
         entity.setPhoneNumber(dto.getPhoneNumber());
         entity.setEmail(dto.getEmail());
         entity.setCompanyName(dto.getCompanyName());
+        entity.setSalesRep(dto.getSalesRep());
 
         return entity;
     }

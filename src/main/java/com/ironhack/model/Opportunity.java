@@ -32,6 +32,9 @@ public class Opportunity {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    @ManyToOne
+    private SalesRep salesRep;
+
     public static Opportunity fromDTO(OpportunityDTO dto){
         var entity = new Opportunity();
         entity.setId(dto.getId());

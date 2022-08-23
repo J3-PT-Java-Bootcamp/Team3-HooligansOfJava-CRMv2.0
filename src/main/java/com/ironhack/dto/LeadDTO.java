@@ -1,6 +1,7 @@
 package com.ironhack.dto;
 
 import com.ironhack.model.Lead;
+import com.ironhack.model.SalesRep;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class LeadDTO {
     private String phoneNumber;
     private String email;
     private String companyName;
+    private SalesRep salesRep;
 
     public static LeadDTO fromEntity(Lead entity){
         var dto = new LeadDTO();
@@ -22,6 +24,7 @@ public class LeadDTO {
         dto.setPhoneNumber(entity.getPhoneNumber());
         dto.setEmail(entity.getEmail());
         dto.setCompanyName(entity.getCompanyName());
+        dto.setSalesRep(entity.getSalesRep());
 
         return dto;
 

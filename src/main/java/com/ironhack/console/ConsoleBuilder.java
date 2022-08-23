@@ -2,6 +2,8 @@ package com.ironhack.console;
 
 
 
+import com.ironhack.model.SalesRep;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -146,5 +148,22 @@ public class ConsoleBuilder {
         return result.toUpperCase();
 
     }
+
+    /*public String salesRepConsoleInput (SalesRep salesRep){
+        String result = "";
+        boolean isValid = false;
+        while(!isValid){
+            String choice = scanner.nextLine();
+            if(choice.contains("@")&&choice.contains(".")&&choice.length()>0 && choice.length()<=50){
+                isValid = true;
+                result  = choice;
+            }
+            if(isValid){
+                System.out.println("Please select a valid email address");            }
+
+        }
+        return result;
+
+    }*/
 
 }

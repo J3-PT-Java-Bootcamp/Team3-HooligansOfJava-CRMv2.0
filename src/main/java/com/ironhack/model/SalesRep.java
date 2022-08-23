@@ -19,10 +19,10 @@ public class SalesRep {
 
     private String name;
 
-    @OneToMany(mappedBy = "associatedSalesRep")
+    @OneToMany(mappedBy = "salesRep")
     private List<Lead> leads;
 
-    @OneToMany(mappedBy = "associatedSalesRep")
+    @OneToMany(mappedBy = "salesRep")
     private List<Opportunity> opportunities;
 
     public static SalesRep fromDTO(SalesRepDTO dto){
