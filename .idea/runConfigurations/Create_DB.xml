@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Create DB" type="DatabaseScript">
-    <data-source id="7291dc7b-f9e2-4980-99c7-dd9503fa4eb3" namespace="schema/&quot;hooligans_crm&quot;" />
-    <script-text>CREATE DATABASE IF NOT EXISTS hooligans_crm;</script-text>
-    <method v="2" />
-  </configuration>
-</component>
