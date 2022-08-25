@@ -42,8 +42,6 @@ public class AccountDTO {
 
         dto.setContacts(contactDTOS);
 
-        dto.setOpportunities(entity.getOpportunities());
-
         return dto;
     }
 }

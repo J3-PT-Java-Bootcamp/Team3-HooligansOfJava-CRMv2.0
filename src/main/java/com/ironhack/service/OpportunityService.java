@@ -12,7 +12,7 @@ import java.util.List;
 public interface OpportunityService {
     Opportunity newOpportunity(ArrayList<Product> productList, Contact contact);
 
-    Opportunity updateOpportunity(Long id, Account account);
+    Opportunity updateOpportunity(Long id, Contact contact);
 
     Opportunity getOpportunityByName(String name);
 

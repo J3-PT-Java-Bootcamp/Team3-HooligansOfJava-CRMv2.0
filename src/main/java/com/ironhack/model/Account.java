@@ -1,14 +1,12 @@
 package com.ironhack.model;
 
 import com.ironhack.dto.AccountDTO;
-import com.ironhack.dto.ContactDTO;
 import com.ironhack.enums.Industry;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,10 +33,6 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Contact> contacts;
 
-    @OneToOne
-    @JoinColumn(name = "opportunity_id")
-    private Opportunity opportunities;
-
     public static Account fromDTO(AccountDTO dto){
         var entity = new Account();
 
@@ -48,7 +42,6 @@ public class Account {
         entity.setEmployeeCount(dto.getEmployeeCount());
         entity.setCity(dto.getCity());
         entity.setCountry(dto.getCountry());
-        entity.setOpportunities(entity.getOpportunities());
 
         return entity;
     }

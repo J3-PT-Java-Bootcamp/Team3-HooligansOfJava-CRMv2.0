@@ -8,10 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@Entity
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 public class Lead {
 
     @Id
@@ -23,6 +23,7 @@ public class Lead {
     private String companyName;
 
     @ManyToOne
+    @JoinColumn(name = "sales_rep_id")
     private SalesRep salesRep;
 
     public static Lead fromDTO(LeadDTO dto){

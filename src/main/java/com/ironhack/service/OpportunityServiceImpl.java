@@ -27,10 +27,10 @@ public class OpportunityServiceImpl implements OpportunityService {
     }
 
     @Override
-    public Opportunity updateOpportunity(Long id, Account account) {
+    public Opportunity updateOpportunity(Long id, Contact contact) {
         Opportunity opportunity = opportunityRepository.findById(id).get();
 
-        opportunity.setAccount(account);
+        opportunity.setDecisionMaker(contact);
         return null;
     }
 

@@ -36,8 +36,8 @@ public class OpportunityDTO {
         }
 
         dto.setProducts(productsDTO);
-        dto.setAccount(entity.getAccount());
 
         return dto;
     }
+
 }
