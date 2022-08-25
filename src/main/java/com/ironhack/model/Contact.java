@@ -29,6 +29,13 @@ public class Contact {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    public Contact(String name, String phoneNumber, String email, Account account) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.account = account;
+    }
+
     public static Contact fromDTO(ContactDTO dto){
         var entity = new Contact();
         entity.setId(dto.getId());

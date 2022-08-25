@@ -25,6 +25,10 @@ public class SalesRep {
     @OneToMany(mappedBy = "salesRep")
     private List<Opportunity> opportunities;
 
+    public SalesRep(String name) {
+        this.name = name;
+    }
+
     public static SalesRep fromDTO(SalesRepDTO dto){
         var salesRep = new SalesRep();
         salesRep.setId(dto.getId());
