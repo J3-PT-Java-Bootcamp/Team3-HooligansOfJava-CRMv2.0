@@ -27,14 +27,14 @@ public class ConsoleBuilder {
         return result.trim();
     }
 
-    public int numberConsoleInput(String message,int[] options) {
+    public Long numberConsoleInput(String message,Long[] options) {
         int result = 0;
         boolean isValid = false;
         while(!isValid){
             System.out.println(message);
             String choice = scanner.nextLine();
             try{
-                for(Integer option : options){
+                for(Long option : options){
                     if(option == Integer.parseInt(choice)){
                         isValid = true;
                         result  = Integer.parseInt(choice);
@@ -48,7 +48,7 @@ public class ConsoleBuilder {
                 System.out.println("Please select a valid option");            }
 
         }
-        return result;
+        return (long)result;
     }
     public String emailConsoleInput(String message) {
         String result = "";

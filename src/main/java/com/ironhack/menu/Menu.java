@@ -1,6 +1,7 @@
 package com.ironhack.menu;
 
 
+import com.ironhack.enums.OpportunityStatus;
 import com.ironhack.model.*;
 import com.ironhack.console.ConsoleBuilder;
 //import com.ironhack.demo.DemoDataLoader;
@@ -10,49 +11,60 @@ import com.ironhack.enums.TypeOfProduct;
 import java.util.*;
 
 import com.ironhack.model.Lead;
-import com.ironhack.service.SalesRepService;
+import com.ironhack.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-//import com.ironhack.gui.GuiMain;
+import org.springframework.stereotype.Component;
 
 import static com.ironhack.enums.OpportunityStatus.*;
-
+@Component
 public class Menu {
 
-    // Autowired todos los services
+    // Services
     @Autowired
     SalesRepService salesRepService;
+    @Autowired
+    LeadService leadService;
+    @Autowired
+    OpportunityService opportunityService;
+    @Autowired
+    ContactService contactService;
+    @Autowired
+    AccountService accountService;
+    @Autowired
+    ProductService productService;
+
     Scanner scanner;
     ConsoleBuilder consoleBuilder;
-
     private String option;
-    LeadList leadList;
 
-    OpportunityList opportunityList;
-
-    public Menu(Scanner scanner, LeadList leadList, OpportunityList opportunityList) {
-        this.scanner = scanner;
+    public Menu() {
+        this.scanner = new Scanner(System.in);
         this.consoleBuilder = new ConsoleBuilder(scanner);
-        this.leadList = leadList;
-        this.opportunityList = opportunityList;
     }
 
     public void start() throws InterruptedException {
         boolean exit = false;
-        // crear 3 SalesRep con los nombres Ana, Eli, Juaquin
+
+
+        SalesRep salesRep1 = salesRepService.newSalesRep("Joaquim");
+        SalesRep salesRep2 = salesRepService.newSalesRep("Ana");
+        SalesRep salesRep3 = salesRepService.newSalesRep("Eli");
+
 
         while (!exit) {
-            List<String> options = Arrays.asList("New SalesRep","New lead", "Show leads", "Lookup Lead id", "Convert id",
+            List<String> options = Arrays.asList("New SalesRep","SalesRep Info","New lead", "Show leads", "Lookup Lead id", "Convert id",
                     "Search " + "opportunity by company name", "Edit opportunity", "Load demo data", "Open App", "Exit");
             option = consoleBuilder.listConsoleInput("Welcome to CRM. What would you like to do?", options);
             switch (option) {
                 case "NEW SALES REP" -> newSalesRep();
+                case "SALES REP INFO" -> getSalesRep();
                 case "NEW LEAD" -> newLeadInfo();
                 case "SHOW LEADS" -> showLeads();
                 case "LOOKUP LEAD ID" -> searchLead();
                 case "CONVERT ID" -> convertId();
                 case "SEARCH OPPORTUNITY BY COMPANY NAME" -> searchOpportunityByCompanyName();
                 case "EDIT OPPORTUNITY" -> editOpportunity();
-                case "LOAD DEMO DATA" -> loadDemoData();
+                //case "LOAD DEMO DATA" -> loadDemoData();
                 //case "OPEN APP" -> GuiMain.main(leadList, opportunityList);
                 case "EXIT" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
@@ -65,6 +77,17 @@ public class Menu {
         salesRepService.newSalesRep(salesRep);
     }
 
+    private void getSalesRep() {
+        List<SalesRep> salesRepList = salesRepService.getSalesReps();
+        if(salesRepList.size() > 0) {
+            System.out.println("The avaliable salesReps are: ");
+            for (SalesRep salesRep : salesRepList) {
+                System.out.println("Name: " + salesRep.getName());
+                System.out.println("Id: " + salesRep.getId());
+            }
+        }
+    }
+
 
     private void newLeadInfo() {
         System.out.println("Enter lead details");
@@ -74,13 +97,12 @@ public class Menu {
         String phoneNumber = String.valueOf(consoleBuilder.numberConsoleInput("Phone number:", 99999999, 1000000000));
         String email = consoleBuilder.emailConsoleInput("Email:");
         String companyName = consoleBuilder.textConsoleInput("Company name:");
-        String salesRep = String.valueOf(consoleBuilder.textConsoleInput("Sales Representant: "));
-        // buscar salesRep por nombre para pasarle el salesRep al lead
+        String salesRepName = String.valueOf(consoleBuilder.textConsoleInput("Sales Representant: "));
+        SalesRep salesRep = salesRepService.getSalesRepByName(salesRepName);
 
-        if (!name.isBlank() && !phoneNumber.isBlank() && !email.isBlank() && !companyName.isBlank()) {
-            // LeadService para crear un nuevo lead
-            Lead lead = new Lead(name, phoneNumber, email, companyName, salesRep);
-            leadList.addLead(lead);
+        if (!name.isBlank() && !phoneNumber.isBlank() && !email.isBlank() && !companyName.isBlank() && !salesRep.getName().isBlank()) {
+            Lead lead = leadService.newLead(name, phoneNumber, email, companyName, salesRep);
+
             System.out.println("Lead created: " + lead);
         } else {
             System.out.println("ERROR!! Enter all details");
@@ -88,10 +110,17 @@ public class Menu {
     }
 
     private void showLeads() {
+        // find all leads with leadService findAll
+        List<Lead> leadList = leadService.getAllLeads();
+
         if (leadList.size() > 0) {
             System.out.println("Total leads at the data base: " + leadList.size());
-            Map<Integer, String> allLeads = leadList.showAllLeads();
-            System.out.println(allLeads);
+            Map<Long, String> leadsToShow = new HashMap<>();
+            for (Lead lead : leadList) {
+                leadsToShow.put(lead.getId(), lead.getName());
+            }
+            System.out.println(leadsToShow);
+
         } else {
             System.out.println("No existing leads to show");
         }
@@ -99,21 +128,33 @@ public class Menu {
     }
 
     private void searchLead() {
+        List<Lead> leadList = leadService.getAllLeads();
+
         if (leadList.size() > 0) {
-            int id = consoleBuilder.numberConsoleInput("Enter lead Id:", leadList.getAllIds());
-            System.out.println(leadList.getLeadById(id));
+            Long[] ids = getAllLeadIds(leadList);
+            Long id = consoleBuilder.numberConsoleInput("Enter lead Id:", ids);
+            Lead lead = leadService.getLeadById(id);
+            System.out.println(lead);
         } else {
             System.out.println("No existing leads to search");
         }
     }
 
+
+
     private void convertId() {
+        List<Lead> leadList = leadService.getAllLeads();
+
         if (leadList.size() > 0) {
             System.out.println(" ");
-            int id = consoleBuilder.numberConsoleInput("Enter lead id to convert to opportunity:",
-                    leadList.getAllIds());
-            Account account = new Account(leadList.getLeadById(id).getCompanyName());
-            Contact contact = new Contact(leadList.getLeadById(id), leadList);
+            Long[] ids = getAllLeadIds(leadList);
+            Long id = consoleBuilder.numberConsoleInput("Enter lead id to convert to opportunity:", ids);
+            Lead lead = leadService.getLeadById(id);
+
+            Account account = accountService.newAccount(lead.getCompanyName());
+
+            Contact contact = contactService.newContact(lead, account);
+
             ArrayList<Product> productList = new ArrayList<>();
             boolean doneOrder = false;
             int count = 0;
@@ -129,58 +170,80 @@ public class Menu {
                 } else {
                     TypeOfProduct type = TypeOfProduct.valueOf(option);
                     int quantity = consoleBuilder.numberConsoleInput("How many of " + option + "?", 1, 999);
-                    Product product = new Product(type, quantity);
+                    Product product = productService.newProduct(type, quantity);
+
                     productList.add(product);
                     System.out.println(productList);
                 }
             }
-            Opportunity opportunity = new Opportunity(productList, contact);
+
+            Opportunity opportunity = opportunityService.newOpportunity(productList, contact);
 
 
             List<String> options = Arrays.asList("PRODUCE", "ECOMMERCE", "MANUFACTURING", "MEDICAL", "OTHER");
-            option = consoleBuilder.listConsoleInput("The opportunity has been created successfully.", options);
+            String industry = consoleBuilder.listConsoleInput("The opportunity has been created successfully.", options);
             account.setIndustry(Industry.valueOf(option));
-            account.setNumberOfEmployees(consoleBuilder.numberConsoleInput("Number of employees of the company:"));
-            account.setCity(consoleBuilder.textConsoleInput("Company city: "));
-            account.setCountry(consoleBuilder.textConsoleInput("Company country: "));
-            account.addContactToList(contact);
-            opportunity.setAccount(account);
-            opportunityList.addOpportunity(opportunity);
-            System.out.println("Opportunity created: " + opportunity);
+            int employees = consoleBuilder.numberConsoleInput("Number of employees of the company:");
+            String city = consoleBuilder.textConsoleInput("Company city: ");
+            String country = consoleBuilder.textConsoleInput("Company country: ");
+            Account updatedAccount = accountService.updateAccount(account.getId(), Industry.valueOf(industry), employees, city, country, contact);
+            Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), account);
+            System.out.println("Opportunity created: " + updatedOpportunity);
         } else {
             System.out.println("No existing leads to convert");
         }
     }
 
     private void searchOpportunityByCompanyName() {
+        // use opportunityService to findByCompanyName
         System.out.println("Please enter company name to search opportunities: ");
         String name = scanner.nextLine();
-        System.out.println(opportunityList.searchByCompanyName(name));
+        Opportunity opportunity = opportunityService.getOpportunityByName(name);
+        System.out.println(opportunity);
     }
 
     private void editOpportunity() {
-        System.out.println(opportunityList.showAllOpportunities());
+        // update opportunity using opportunityService, creating a new opportunity and saving the new entity
+        List<Opportunity> opportunityList = opportunityService.findAll();
+        System.out.println(opportunityList);
         System.out.println("---------------------");
         System.out.print("Select opportunity id: ");
-        int id = consoleBuilder.numberConsoleInput("Select opportunity id: ", opportunityList.getAllOpportunitiesId());
-        Opportunity chosenOpportunity = opportunityList.getOpportunityById(id);
+        Long id = consoleBuilder.numberConsoleInput("Select opportunity id: ", getAllOpportunitiesIds(opportunityList));
+        Opportunity chosenOpportunity = opportunityService.getOpportunityById(id);
         System.out.println(chosenOpportunity);
         System.out.println("What should be the new status?");
         System.out.println("---------------------");
         List<String> options = Arrays.asList(CLOSED_LOST.toString(), CLOSED_WON.toString());
         String newStatus = consoleBuilder.listConsoleInput("What should be the new status?", options);
-        if (newStatus.equals(CLOSED_LOST.toString())) {
-            chosenOpportunity.setStatus(CLOSED_LOST);
-        } else {
-            chosenOpportunity.setStatus(CLOSED_WON);
-        }
-        System.out.println("New status: " + chosenOpportunity.getStatus());
+        Opportunity updatedOpportunity = opportunityService.updateStatus(chosenOpportunity, OpportunityStatus.valueOf(newStatus));
+
+        System.out.println("New status: " + updatedOpportunity.getStatus());
     }
 
-    private void loadDemoData() throws InterruptedException {
-        DemoDataLoader.loadAllDemo();
-        leadList = DemoDataLoader.demoLeads;
-        opportunityList = DemoDataLoader.demoOpportunities;
+//    private void loadDemoData() throws InterruptedException {
+//        DemoDataLoader.loadAllDemo();
+//        leadList = DemoDataLoader.demoLeads;
+//        opportunityList = DemoDataLoader.demoOpportunities;
+//    }
+
+    private Long[] getAllLeadIds(List<Lead> leadList) {
+        Long[] ids = new Long[leadList.size()];
+
+        for (int i = 0; i < leadList.size(); i++) {
+            ids[i] = leadList.get(i).getId();
+        }
+
+        return ids;
+    }
+
+    private Long[] getAllOpportunitiesIds(List<Opportunity> opportunityList) {
+        Long[] ids = new Long[opportunityList.size()];
+
+        for (int i = 0; i < opportunityList.size(); i++) {
+            ids[i] = opportunityList.get(i).getId();
+        }
+
+        return ids;
     }
 
 }
