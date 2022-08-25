@@ -19,27 +19,29 @@ import static com.ironhack.enums.OpportunityStatus.*;
 @Component
 public class Menu {
 
-    // Services
-    @Autowired
-    SalesRepService salesRepService;
-    @Autowired
-    LeadService leadService;
-    @Autowired
-    OpportunityService opportunityService;
-    @Autowired
-    ContactService contactService;
-    @Autowired
-    AccountService accountService;
-    @Autowired
-    ProductService productService;
-
     Scanner scanner;
     ConsoleBuilder consoleBuilder;
+
+
+    SalesRepService salesRepService;
+    LeadService leadService;
+    OpportunityService opportunityService;
+    ContactService contactService;
+    AccountService accountService;
+    ProductService productService;
+
+
     private String option;
 
-    public Menu() {
+    public Menu(SalesRepService salesRepService, LeadService leadService, OpportunityService opportunityService, ContactService contactService, AccountService accountService, ProductService productService) {
         this.scanner = new Scanner(System.in);
         this.consoleBuilder = new ConsoleBuilder(scanner);
+        this.salesRepService = salesRepService;
+        this.leadService = leadService;
+        this.opportunityService = opportunityService;
+        this.contactService = contactService;
+        this.accountService = accountService;
+        this.productService = productService;
     }
 
     public void start() throws InterruptedException {
@@ -182,12 +184,11 @@ public class Menu {
 
             List<String> options = Arrays.asList("PRODUCE", "ECOMMERCE", "MANUFACTURING", "MEDICAL", "OTHER");
             String industry = consoleBuilder.listConsoleInput("The opportunity has been created successfully.", options);
-            account.setIndustry(Industry.valueOf(option));
             int employees = consoleBuilder.numberConsoleInput("Number of employees of the company:");
             String city = consoleBuilder.textConsoleInput("Company city: ");
             String country = consoleBuilder.textConsoleInput("Company country: ");
             Account updatedAccount = accountService.updateAccount(account.getId(), Industry.valueOf(industry), employees, city, country, contact);
-            Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), account);
+            Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), updatedAccount);
             System.out.println("Opportunity created: " + updatedOpportunity);
         } else {
             System.out.println("No existing leads to convert");

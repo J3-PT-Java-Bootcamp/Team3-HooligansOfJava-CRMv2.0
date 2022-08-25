@@ -7,6 +7,9 @@ import com.ironhack.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -14,7 +17,8 @@ public class AccountServiceImpl implements AccountService {
     AccountRepository accountRepository;
     @Override
     public Account newAccount(String companyName) {
-        Account account = newAccount(companyName);
+        Account account = new Account();
+        account.setCompanyName(companyName);
 
         return accountRepository.save(account);
     }
@@ -27,7 +31,16 @@ public class AccountServiceImpl implements AccountService {
         account.setEmployeeCount(employees);
         account.setCity(city);
         account.setCountry(country);
-        account.getContacts().add(contact);
+        var contacts = account.getContacts();
+        if (contacts.size() > 0) {
+            contacts.add(contact);
+            account.setContacts(contacts);
+        }
+        else {
+            List<Contact> contactList = new ArrayList<>();
+            contactList.add(contact);
+            account.setContacts(contactList);
+        }
 
         return accountRepository.save(account);
     }

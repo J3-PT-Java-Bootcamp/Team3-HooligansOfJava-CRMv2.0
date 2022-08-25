@@ -20,7 +20,9 @@ public class OpportunityServiceImpl implements OpportunityService {
 
     @Override
     public Opportunity newOpportunity(ArrayList<Product> productList, Contact contact) {
-        Opportunity opportunity = newOpportunity(productList, contact);
+        Opportunity opportunity = new Opportunity();
+        opportunity.setProducts(productList);
+        opportunity.setDecisionMaker(contact);
         return opportunityRepository.save(opportunity);
     }
 
