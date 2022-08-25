@@ -39,7 +39,7 @@ public class Application implements CommandLineRunner {
         menu.start();
 
         ConsoleBuilder consoleBuilder = new ConsoleBuilder(scanner);
-        Reporting reports = new Reporting(consoleBuilder);
+        Reporting reports = new Reporting(consoleBuilder,salesRepService, leadService, opportunityService, contactService, accountService, productService);
         reports.menu();
     }
 }

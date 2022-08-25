@@ -11,4 +11,14 @@ public interface SalesRepService {
     List<SalesRep> getSalesReps();
 
     SalesRep getSalesRepByName(String salesRepName);
+
+    void reportLead();
+
+    void reportOpportunity();
+
+    void reportClosedWon();
+
+    void reportClosedLost();
+
+    void reportOpen();
 }

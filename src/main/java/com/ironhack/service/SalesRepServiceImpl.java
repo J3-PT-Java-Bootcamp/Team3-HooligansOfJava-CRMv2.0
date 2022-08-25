@@ -2,9 +2,7 @@ package com.ironhack.service;
 
 import com.ironhack.model.SalesRep;
 import com.ironhack.repository.SalesRepRepository;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +26,30 @@ public class SalesRepServiceImpl implements SalesRepService{
     @Override
     public SalesRep getSalesRepByName(String salesRepName) {
         return salesRepRepository.findSalesRepByName(salesRepName);
+    }
+
+    @Override
+    public void reportLead() {
+
+    }
+
+    @Override
+    public void reportOpportunity() {
+
+    }
+
+    @Override
+    public void reportClosedWon() {
+
+    }
+
+    @Override
+    public void reportClosedLost() {
+
+    }
+
+    @Override
+    public void reportOpen() {
+
     }
 }
