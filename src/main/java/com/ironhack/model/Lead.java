@@ -8,11 +8,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @AllArgsConstructor
+@Entity
 public class Lead {
 
     @Id
