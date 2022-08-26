@@ -6,9 +6,7 @@ import com.ironhack.repository.SalesRepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class SalesRepServiceImpl implements SalesRepService{
@@ -35,10 +33,10 @@ public class SalesRepServiceImpl implements SalesRepService{
     @Override
     public void reportLead() {
 
-        var salesRepResponse = salesRepRepository.groupByName();
+        var salesRepResponse = salesRepRepository.groupLeadsByName();
         String[][] data = new String[salesRepResponse.size()+1][2];
         data[0][0] = "SalesRep";
-        data[0][1] = "Leads";
+        data[0][1] = "Number of leads";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();
@@ -51,21 +49,55 @@ public class SalesRepServiceImpl implements SalesRepService{
 
     @Override
     public void reportOpportunity() {
-
+        var salesRepResponse = salesRepRepository.groupOpportunityByName();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
     }
 
     @Override
     public void reportClosedWon() {
+        var salesRepResponse = salesRepRepository.groupOpportunityByNameWon();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
 
     }
 
     @Override
     public void reportClosedLost() {
+        var salesRepResponse = salesRepRepository.groupOpportunityByNameLost();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
 
     }
 
     @Override
     public void reportOpen() {
-
+        var salesRepResponse = salesRepRepository.groupOpportunityByNameOpen();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
     }
 }
