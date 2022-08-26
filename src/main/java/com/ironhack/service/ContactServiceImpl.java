@@ -16,7 +16,12 @@ public class ContactServiceImpl implements ContactService {
     ContactRepository contactRepository;
     @Override
     public Contact newContact(Lead lead, Account account) {
-        Contact contact = new Contact(lead.getName(), lead.getPhoneNumber(), lead.getEmail(), account);
+        Contact contact = new Contact();
+        contact.setId(lead.getId());
+        contact.setName(lead.getName());
+        contact.setPhoneNumber(lead.getPhoneNumber());
+        contact.setEmail(lead.getEmail());
+        contact.setAccount(account);
         return contactRepository.save(contact);
     }
 }

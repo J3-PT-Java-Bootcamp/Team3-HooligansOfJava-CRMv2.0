@@ -47,12 +47,6 @@ public class Menu {
     public void start() throws InterruptedException {
         boolean exit = false;
 
-
-        SalesRep salesRep1 = salesRepService.newSalesRep("Joaquim");
-        SalesRep salesRep2 = salesRepService.newSalesRep("Ana");
-        SalesRep salesRep3 = salesRepService.newSalesRep("Eli");
-
-
         while (!exit) {
             List<String> options = Arrays.asList("New SalesRep","SalesRep Info","New lead", "Show leads", "Lookup Lead id", "Convert id",
                     "Search " + "opportunity by company name", "Edit opportunity", "Load demo data", "Open App", "Exit");
@@ -246,5 +240,4 @@ public class Menu {
 
         return ids;
     }
-
 }

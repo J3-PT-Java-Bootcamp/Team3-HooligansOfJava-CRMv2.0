@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ironhack.enums.OpportunityStatus.OPEN;
+
 @Service
 public class OpportunityServiceImpl implements OpportunityService {
 
@@ -21,6 +23,7 @@ public class OpportunityServiceImpl implements OpportunityService {
     @Override
     public Opportunity newOpportunity(ArrayList<Product> productList, Contact contact) {
         Opportunity opportunity = new Opportunity();
+        opportunity.setStatus(OPEN);
         opportunity.setProducts(productList);
         opportunity.setDecisionMaker(contact);
         return opportunityRepository.save(opportunity);

@@ -35,4 +35,9 @@ public class Product {
 
         return entity;
     }
+
+    @Override
+    public String toString() {
+        return "Product{product=" + product + ", quantity=" + quantity + '}';
+    }
 }
