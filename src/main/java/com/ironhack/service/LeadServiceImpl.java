@@ -33,4 +33,9 @@ public class LeadServiceImpl implements LeadService {
     public Lead getLeadById(Long id) {
          return leadRepository.findById(id).orElseThrow();
     }
+
+    @Override
+    public void removeLead(Lead lead) {
+        leadRepository.delete(lead);
+    }
 }

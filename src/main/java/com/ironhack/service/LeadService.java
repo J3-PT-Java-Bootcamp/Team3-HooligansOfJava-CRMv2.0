@@ -13,4 +13,6 @@ public interface LeadService {
     List<Lead> getAllLeads();
 
     Lead getLeadById(Long id);
+
+    void removeLead(Lead lead);
 }
