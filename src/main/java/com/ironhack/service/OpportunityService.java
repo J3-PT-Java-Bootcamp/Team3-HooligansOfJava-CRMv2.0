@@ -14,7 +14,7 @@ public interface OpportunityService {
 
     Opportunity updateOpportunity(Long id, Contact contact);
 
-    Opportunity getOpportunityByName(String name);
+    List<Opportunity> getOpportunityByName(String name);
 
     List<Opportunity> findAll();
 

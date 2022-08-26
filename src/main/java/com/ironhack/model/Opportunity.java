@@ -24,7 +24,7 @@ public class Opportunity {
     @Enumerated(EnumType.STRING)
     private OpportunityStatus status;
 
-    @OneToMany(mappedBy = "opportunity")
+    @OneToMany(mappedBy = "opportunity", fetch = FetchType.EAGER)
     private List<Product> products; // product & quantity
 
     @ManyToOne
@@ -38,5 +38,11 @@ public class Opportunity {
         entity.setStatus(dto.getStatus());
 
         return entity;
+    }
+
+    @Override
+    public String toString() {
+        return "Opportunity{" + "id=" + id + ", decisionMaker=" + decisionMaker + ", status=" + status + ", products" +
+                "=" + products + ", salesRep=" + salesRep + '}';
     }
 }

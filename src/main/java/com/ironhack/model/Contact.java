@@ -25,7 +25,7 @@ public class Contact {
 
     private String email;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id")
     private Account account;
 
@@ -46,4 +46,9 @@ public class Contact {
         return entity;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" + "id=" + id + ", name='" + name + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", email" +
+                "='" + email + '\'' + ", account=" + account + '}';
+    }
 }

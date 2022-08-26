@@ -38,8 +38,8 @@ public class OpportunityServiceImpl implements OpportunityService {
     }
 
     @Override
-    public Opportunity getOpportunityByName(String name) {
-        return opportunityRepository.findOpportunityByCompanyName(name);
+    public List<Opportunity> getOpportunityByName(String name) {
+        return opportunityRepository.findByCompanyName(name);
     }
 
     @Override

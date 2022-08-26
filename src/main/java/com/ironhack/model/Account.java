@@ -30,7 +30,7 @@ public class Account {
 
     private String country;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private List<Contact> contacts;
 
     public static Account fromDTO(AccountDTO dto){
@@ -44,5 +44,11 @@ public class Account {
         entity.setCountry(dto.getCountry());
 
         return entity;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", companyName='" + companyName + '\'' + ", industry=" + industry + ", " +
+                "employeeCount=" + employeeCount + ", city='" + city + '\'' + ", country='" + country + '}';
     }
 }
