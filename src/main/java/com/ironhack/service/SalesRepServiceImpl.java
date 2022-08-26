@@ -65,7 +65,7 @@ public class SalesRepServiceImpl implements SalesRepService{
         var salesRepResponse = salesRepRepository.groupOpportunityByNameWon();
         String[][] data = new String[salesRepResponse.size()+1][2];
         data[0][0] = "SalesRep";
-        data[0][1] = "Number of opportunities";
+        data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();
@@ -79,7 +79,7 @@ public class SalesRepServiceImpl implements SalesRepService{
         var salesRepResponse = salesRepRepository.groupOpportunityByNameLost();
         String[][] data = new String[salesRepResponse.size()+1][2];
         data[0][0] = "SalesRep";
-        data[0][1] = "Number of opportunities";
+        data[0][1] = "Number of opportunities lost";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();
@@ -93,7 +93,7 @@ public class SalesRepServiceImpl implements SalesRepService{
         var salesRepResponse = salesRepRepository.groupOpportunityByNameOpen();
         String[][] data = new String[salesRepResponse.size()+1][2];
         data[0][0] = "SalesRep";
-        data[0][1] = "Number of opportunities";
+        data[0][1] = "Number of opportunities open";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();

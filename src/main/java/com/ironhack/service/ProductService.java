@@ -5,4 +5,14 @@ import com.ironhack.model.Product;
 
 public interface ProductService {
     Product newProduct(TypeOfProduct type, int quantity);
+
+
+
+    void reportOpportunity();
+
+    void reportClosedWon();
+
+    void reportClosedLost();
+
+    void reportOpen();
 }
