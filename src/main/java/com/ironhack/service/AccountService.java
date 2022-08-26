@@ -9,4 +9,19 @@ public interface AccountService {
 
     Account updateAccount(Long id, Industry industry, int employees, String city, String country, Contact contact);
 
+    void reportOpportunityByCity();
+
+    void reportClosedLostByCity();
+
+    void reportClosedWonByCity();
+
+    void reportOpenByCity();
+
+    void reportOpenByCountry();
+
+    void reportClosedLostByCountry();
+
+    void reportClosedWonByCountry();
+
+    void reportOpportunityByCountry();
 }

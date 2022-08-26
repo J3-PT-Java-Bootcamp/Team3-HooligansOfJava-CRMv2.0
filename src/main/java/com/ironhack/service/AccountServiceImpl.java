@@ -3,6 +3,7 @@ package com.ironhack.service;
 import com.ironhack.enums.Industry;
 import com.ironhack.model.Account;
 import com.ironhack.model.Contact;
+import com.ironhack.reporting.tableWithLinesAndMaxWidth;
 import com.ironhack.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,111 @@ public class AccountServiceImpl implements AccountService {
         }
 
         return accountRepository.save(account);
+    }
+
+    @Override
+    public void reportOpportunityByCity() {
+        var salesRepResponse = accountRepository.OpportunityByCity();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportClosedLostByCity() {
+        var salesRepResponse = accountRepository.OpportunityByCityStatusClosed();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportClosedWonByCity() {
+        var salesRepResponse = accountRepository.OpportunityByCityStatusWon();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+
+    }
+
+    @Override
+    public void reportOpenByCity() {
+
+        var salesRepResponse = accountRepository.OpportunityByCityStatusOpen();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportOpenByCountry() {
+        var salesRepResponse = accountRepository.OpportunityByCountryStatusOpen();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportClosedLostByCountry() {
+        var salesRepResponse = accountRepository.OpportunityByCountryStatusLost();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportClosedWonByCountry() {
+        var salesRepResponse = accountRepository.OpportunityByCountryStatusWon();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportOpportunityByCountry() {
+        var salesRepResponse = accountRepository.OpportunityByCountry();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Number of opportunities won";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
     }
 }
