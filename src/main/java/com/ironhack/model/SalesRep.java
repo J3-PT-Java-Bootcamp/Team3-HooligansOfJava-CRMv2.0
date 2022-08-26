@@ -36,4 +36,9 @@ public class SalesRep {
 
         return salesRep;
     }
+
+    @Override
+    public String toString() {
+        return "SalesRep{" + "id=" + id + ", name='" + name + '}';
+    }
 }
