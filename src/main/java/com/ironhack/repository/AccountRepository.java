@@ -33,4 +33,16 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "SELECT a.country, COUNT(a.country) FROM Account a  GROUP BY a.country")
     List<Object[]>  OpportunityByCountry();
+
+    @Query(value = "SELECT a.industry, COUNT(a.industry) FROM Account a  GROUP BY a.industry")
+    List<Object[]> OpportunityByIndustry();
+
+    @Query(value = "SELECT a.industry, COUNT(a.industry) FROM Account a JOIN Opportunity o ON o.decisionMaker = a.id WHERE o.status ='CLOSED_WON' GROUP BY a.industry")
+    List<Object[]>  OpportunityByIndustryStatusWon();
+
+    @Query(value = "SELECT a.industry, COUNT(a.industry) FROM Account a JOIN Opportunity o ON o.decisionMaker = a.id WHERE o.status ='CLOSED_LOST' GROUP BY a.industry")
+    List<Object[]> OpportunityByIndustryStatusLost();
+
+    @Query(value = "SELECT a.industry, COUNT(a.industry) FROM Account a JOIN Opportunity o ON o.decisionMaker = a.id WHERE o.status ='OPEN' GROUP BY a.industry")
+    List<Object[]>OpportunityByIndustryStatusOpen();
 }

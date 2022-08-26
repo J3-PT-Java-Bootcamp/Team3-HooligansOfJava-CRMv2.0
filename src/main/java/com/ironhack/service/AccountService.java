@@ -24,4 +24,12 @@ public interface AccountService {
     void reportClosedWonByCountry();
 
     void reportOpportunityByCountry();
+
+    void reportOpportunityByIndustry();
+
+    void reportClosedWonByIndustry();
+
+    void reportClosedLostByIndustry();
+
+    void reportOpenByIndustry();
 }

@@ -84,14 +84,13 @@ public class Reporting {
     public void Country() {
         boolean exit = false;
         while (!exit) {
-            List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
+            List<String> options = Arrays.asList( "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
             String option = consoleBuilder.listConsoleInput("What country report do you like?", options);
             switch (option) {
-                case "Report Lead " -> System.out.println("Report Lead");
-                case "REPORT OPPORTUNITY" -> System.out.println("Report Opportunity");
-                case "REPORT CLOSED-WON" -> System.out.println("Report CLOSED-WON");
-                case "Report CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
-                case "Report OPEN" -> System.out.println("Report OPEN");
+                case "REPORT OPPORTUNITY" -> accountService.reportOpportunityByCountry();
+                case "REPORT CLOSED-WON" -> accountService.reportClosedWonByCountry();
+                case "REPORT CLOSED-LOST" -> accountService.reportClosedLostByCountry();
+                case "REPORT OPEN" ->accountService.reportOpenByCountry();
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -102,14 +101,13 @@ public class Reporting {
     public void City() {
         boolean exit = false;
         while (!exit) {
-            List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
-            String option = consoleBuilder.listConsoleInput("What city report do you like?", options);
+            List<String> options = Arrays.asList( "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
+            String option = consoleBuilder.listConsoleInput("What country report do you like?", options);
             switch (option) {
-                case "Report Lead " -> System.out.println("Report Lead");
-                case "REPORT OPPORTUNITY" -> System.out.println("Report Opportunity");
-                case "REPORT CLOSED-WON" -> System.out.println("Report CLOSED-WON");
-                case "Report CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
-                case "Report OPEN" -> System.out.println("Report OPEN");
+                case "REPORT OPPORTUNITY" -> accountService.reportOpportunityByCity();
+                case "REPORT CLOSED-WON" -> accountService.reportClosedWonByCity();
+                case "REPORT CLOSED-LOST" -> accountService.reportClosedLostByCity();
+                case "REPORT OPEN" ->accountService.reportOpenByCity();
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -120,17 +118,17 @@ public class Reporting {
     public void Industry() {
         boolean exit = false;
         while (!exit) {
-            List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
-            String option = consoleBuilder.listConsoleInput("What industry report do you like?", options);
+            List<String> options = Arrays.asList( "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
+            String option = consoleBuilder.listConsoleInput("What country report do you like?", options);
             switch (option) {
-                case "Report Lead " -> System.out.println("Report Lead");
-                case "REPORT OPPORTUNITY" -> System.out.println("Report Opportunity");
-                case "REPORT CLOSED-WON" -> System.out.println("Report CLOSED-WON");
-                case "Report CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
-                case "Report OPEN" -> System.out.println("Report OPEN");
+                case "REPORT OPPORTUNITY" -> accountService.reportOpportunityByIndustry();
+                case "REPORT CLOSED-WON" -> accountService.reportClosedWonByIndustry();
+                case "REPORT CLOSED-LOST" -> accountService.reportClosedLostByIndustry();
+                case "REPORT OPEN" ->accountService.reportOpenByIndustry();
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
+
         }
 
     }

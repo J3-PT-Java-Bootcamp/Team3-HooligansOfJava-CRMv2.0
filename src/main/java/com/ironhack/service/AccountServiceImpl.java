@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportOpportunityByCity() {
         var salesRepResponse = accountRepository.OpportunityByCity();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "City";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -63,7 +63,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportClosedLostByCity() {
         var salesRepResponse = accountRepository.OpportunityByCityStatusClosed();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "City";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -76,7 +76,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportClosedWonByCity() {
         var salesRepResponse = accountRepository.OpportunityByCityStatusWon();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "City";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -91,8 +91,8 @@ public class AccountServiceImpl implements AccountService {
 
         var salesRepResponse = accountRepository.OpportunityByCityStatusOpen();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
-        data[0][1] = "Number of opportunities won";
+        data[0][0] = "City";
+        data[0][1] = "Number of opportunities open";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();
@@ -104,7 +104,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportOpenByCountry() {
         var salesRepResponse = accountRepository.OpportunityByCountryStatusOpen();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "Country";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -117,7 +117,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportClosedLostByCountry() {
         var salesRepResponse = accountRepository.OpportunityByCountryStatusLost();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "Country";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -130,7 +130,7 @@ public class AccountServiceImpl implements AccountService {
     public void reportClosedWonByCountry() {
         var salesRepResponse = accountRepository.OpportunityByCountryStatusWon();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
+        data[0][0] = "Country";
         data[0][1] = "Number of opportunities won";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
@@ -143,8 +143,61 @@ public class AccountServiceImpl implements AccountService {
     public void reportOpportunityByCountry() {
         var salesRepResponse = accountRepository.OpportunityByCountry();
         String[][] data = new String[salesRepResponse.size()+1][2];
-        data[0][0] = "SalesRep";
-        data[0][1] = "Number of opportunities won";
+        data[0][0] = "Country";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportOpportunityByIndustry() {
+        var salesRepResponse = accountRepository.OpportunityByIndustry();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "Industry";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+
+    @Override
+    public void reportClosedWonByIndustry() {
+        var salesRepResponse = accountRepository.OpportunityByIndustryStatusWon();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "Industry";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportClosedLostByIndustry() {
+        var salesRepResponse = accountRepository.OpportunityByIndustryStatusLost();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "Industry";
+        data[0][1] = "Number of opportunities";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void reportOpenByIndustry() {
+        var salesRepResponse = accountRepository.OpportunityByIndustryStatusOpen();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "Industry";
+        data[0][1] = "Number of opportunities";
         for (int i = 0; i < salesRepResponse.size(); i++) {
             data[i+1][0] =salesRepResponse.get(i)[0].toString();
             data[i+1][1] =salesRepResponse.get(i)[1].toString();
