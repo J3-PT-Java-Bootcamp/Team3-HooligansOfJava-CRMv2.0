@@ -18,8 +18,7 @@ public class SalesRep {
     private Long id;
 
     private String name;
-
-    @OneToMany(mappedBy = "salesRep")
+    @OneToMany(mappedBy = "salesRep", fetch = FetchType.LAZY)
     private List<Lead> leads;
 
     @OneToMany(mappedBy = "salesRep")

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SalesRepServiceImpl implements SalesRepService{
@@ -28,10 +29,18 @@ public class SalesRepServiceImpl implements SalesRepService{
         return salesRepRepository.findSalesRepByName(salesRepName);
     }
 
+
     @Override
     public void reportLead() {
+        String response = "";
+        var aaaaa = salesRepRepository.groupByName();
+        for (Object[] objects : aaaaa) {
+            System.out.println(objects[0] + " " + objects[1]);
+        }
 
     }
+
+
 
     @Override
     public void reportOpportunity() {
