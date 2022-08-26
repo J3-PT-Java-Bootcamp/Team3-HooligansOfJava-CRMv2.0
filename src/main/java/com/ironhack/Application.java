@@ -1,8 +1,6 @@
 package com.ironhack;
 
-import com.ironhack.console.ConsoleBuilder;
 import com.ironhack.menu.Menu;
-import com.ironhack.reporting.Reporting;
 import com.ironhack.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,13 +31,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String[] args) throws InterruptedException {
-
-        Scanner scanner = new Scanner(System.in);
         Menu menu = new Menu(salesRepService, leadService, opportunityService, contactService, accountService, productService);
         menu.start();
-
-        ConsoleBuilder consoleBuilder = new ConsoleBuilder(scanner);
-        Reporting reports = new Reporting(consoleBuilder,salesRepService, leadService, opportunityService, contactService, accountService, productService);
-        reports.menu();
     }
 }

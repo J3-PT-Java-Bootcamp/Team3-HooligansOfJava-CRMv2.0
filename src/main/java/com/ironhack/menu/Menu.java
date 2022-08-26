@@ -4,7 +4,6 @@ package com.ironhack.menu;
 import com.ironhack.enums.OpportunityStatus;
 import com.ironhack.model.*;
 import com.ironhack.console.ConsoleBuilder;
-//import com.ironhack.demo.DemoDataLoader;
 import com.ironhack.enums.Industry;
 import com.ironhack.enums.TypeOfProduct;
 
@@ -12,7 +11,6 @@ import java.util.*;
 
 import com.ironhack.model.Lead;
 import com.ironhack.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static com.ironhack.enums.OpportunityStatus.*;
@@ -21,15 +19,12 @@ public class Menu {
 
     Scanner scanner;
     ConsoleBuilder consoleBuilder;
-
-
     SalesRepService salesRepService;
     LeadService leadService;
     OpportunityService opportunityService;
     ContactService contactService;
     AccountService accountService;
     ProductService productService;
-
 
     private String option;
 
@@ -49,19 +44,17 @@ public class Menu {
 
         while (!exit) {
             List<String> options = Arrays.asList("New SalesRep","SalesRep Info","New lead", "Show leads", "Lookup Lead id", "Convert id",
-                    "Search " + "opportunity by company name", "Edit opportunity", "Load demo data", "Open App", "Exit");
+                    "Search opportunity by company name", "Edit opportunity", "Exit");
             option = consoleBuilder.listConsoleInput("Welcome to CRM. What would you like to do?", options);
             switch (option) {
-                case "NEW SALES REP" -> newSalesRep();
-                case "SALES REP INFO" -> getSalesRep();
+                case "NEW SALESREP" -> newSalesRep();
+                case "SALESREP INFO" -> getSalesRep();
                 case "NEW LEAD" -> newLeadInfo();
                 case "SHOW LEADS" -> showLeads();
                 case "LOOKUP LEAD ID" -> searchLead();
                 case "CONVERT ID" -> convertId();
                 case "SEARCH OPPORTUNITY BY COMPANY NAME" -> searchOpportunityByCompanyName();
                 case "EDIT OPPORTUNITY" -> editOpportunity();
-                //case "LOAD DEMO DATA" -> loadDemoData();
-                //case "OPEN APP" -> GuiMain.main(leadList, opportunityList);
                 case "EXIT" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -69,21 +62,21 @@ public class Menu {
     }
 
     private void newSalesRep() {
-        String salesRep = String.valueOf(consoleBuilder.textConsoleInput("Insert the sales representant name: "));
+        String salesRep = String.valueOf(consoleBuilder.textConsoleInput("Insert the Sales Rep name: "));
+        System.out.println("------------------");
         salesRepService.newSalesRep(salesRep);
     }
 
     private void getSalesRep() {
         List<SalesRep> salesRepList = salesRepService.getSalesReps();
         if(salesRepList.size() > 0) {
-            System.out.println("The avaliable salesReps are: ");
+            System.out.println("The available Sales Reps are: ");
             for (SalesRep salesRep : salesRepList) {
                 System.out.println("Name: " + salesRep.getName());
                 System.out.println("Id: " + salesRep.getId());
             }
         }
     }
-
 
     private void newLeadInfo() {
         System.out.println("Enter lead details");
@@ -106,7 +99,6 @@ public class Menu {
     }
 
     private void showLeads() {
-        // find all leads with leadService findAll
         List<Lead> leadList = leadService.getAllLeads();
 
         if (leadList.size() > 0) {
@@ -136,13 +128,11 @@ public class Menu {
         }
     }
 
-
-
     private void convertId() {
         List<Lead> leadList = leadService.getAllLeads();
 
         if (leadList.size() > 0) {
-            System.out.println(" ");
+            System.out.println("----------");
             Long[] ids = getAllLeadIds(leadList);
             Long id = consoleBuilder.numberConsoleInput("Enter lead id to convert to opportunity:", ids);
             Lead lead = leadService.getLeadById(id);
@@ -150,6 +140,8 @@ public class Menu {
             Account account = accountService.newAccount(lead.getCompanyName());
 
             Contact contact = contactService.newContact(lead, account);
+
+            leadService.removeLead(lead);
 
             ArrayList<Product> productList = new ArrayList<>();
             boolean doneOrder = false;
@@ -183,18 +175,16 @@ public class Menu {
             String country = consoleBuilder.textConsoleInput("Company country: ");
             Account updatedAccount = accountService.updateAccount(account.getId(), Industry.valueOf(industry), employees, city, country, contact);
             Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), contact);
-            System.out.println("Opportunity created: " + updatedOpportunity);
         } else {
             System.out.println("No existing leads to convert");
         }
     }
 
     private void searchOpportunityByCompanyName() {
-        // use opportunityService to findByCompanyName
         System.out.println("Please enter company name to search opportunities: ");
         String name = scanner.nextLine();
-        Opportunity opportunity = opportunityService.getOpportunityByName(name);
-        System.out.println(opportunity);
+        List<Opportunity> opportunities = opportunityService.getOpportunityByName(name);
+        System.out.println(opportunities);
     }
 
     private void editOpportunity() {
@@ -214,12 +204,6 @@ public class Menu {
 
         System.out.println("New status: " + updatedOpportunity.getStatus());
     }
-
-//    private void loadDemoData() throws InterruptedException {
-//        DemoDataLoader.loadAllDemo();
-//        leadList = DemoDataLoader.demoLeads;
-//        opportunityList = DemoDataLoader.demoOpportunities;
-//    }
 
     private Long[] getAllLeadIds(List<Lead> leadList) {
         Long[] ids = new Long[leadList.size()];
