@@ -28,11 +28,8 @@ public class Opportunity {
     @OneToMany(mappedBy = "opportunity")
     private List<Product> products; // product & quantity
 
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
     @ManyToOne
+    @JoinColumn(name = "sales_rep_id")
     private SalesRep salesRep;
 
     public static Opportunity fromDTO(OpportunityDTO dto){

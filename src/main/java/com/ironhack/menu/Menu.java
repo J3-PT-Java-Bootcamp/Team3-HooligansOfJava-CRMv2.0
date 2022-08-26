@@ -188,7 +188,7 @@ public class Menu {
             String city = consoleBuilder.textConsoleInput("Company city: ");
             String country = consoleBuilder.textConsoleInput("Company country: ");
             Account updatedAccount = accountService.updateAccount(account.getId(), Industry.valueOf(industry), employees, city, country, contact);
-            Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), updatedAccount);
+            Opportunity updatedOpportunity = opportunityService.updateOpportunity(opportunity.getId(), contact);
             System.out.println("Opportunity created: " + updatedOpportunity);
         } else {
             System.out.println("No existing leads to convert");

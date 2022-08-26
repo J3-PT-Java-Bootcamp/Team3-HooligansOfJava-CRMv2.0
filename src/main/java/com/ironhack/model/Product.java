@@ -35,6 +35,4 @@ public class Product {
 
         return entity;
     }
-
-
 }
