@@ -136,13 +136,13 @@ public class Reporting {
     public void EmployeeCount() {
         boolean exit = false;
         while (!exit) {
-            List<String> options = Arrays.asList("Mean", "Median", "Max", "Min", "Back");
-            String option = consoleBuilder.listConsoleInput("What employee count report do you like?", options);
+            List<String> options = Arrays.asList("Mean EmployeeCount", "Median EmployeeCount", "Max EmployeeCount", "Min EmployeeCount", "Back");
+            String option = consoleBuilder.listConsoleInput("What employee count report do you want?", options);
             switch (option) {
-                case "MEAN" -> System.out.println("Mean");
-                case "MEDIAN" -> System.out.println("Median");
-                case "MAX" -> System.out.println("Max");
-                case "MIN" -> System.out.println("Min");
+                case "MEAN EMPLOYEECOUNT" -> accountService.meanEmployeeCountQuantity();
+                case "MEDIAN EMPLOYEECOUNT" -> accountService.medianEmployeeCountQuantity();
+                case "MAX EMPLOYEECOUNT" -> accountService.maxEmployeeCountQuantity();
+                case "MIN EMPLOYEECOUNT" -> accountService.minEmployeeCountQuantity();
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -170,7 +170,7 @@ public class Reporting {
         boolean exit = false;
         while (!exit) {
             List<String> options = Arrays.asList("Mean", "Median", "Max", "Min", "Back");
-            String option = consoleBuilder.listConsoleInput("What opportunity report do you like?", options);
+            String option = consoleBuilder.listConsoleInput("What opportunity report do you want?", options);
             switch (option) {
                 case "MEAN" -> System.out.println("Mean");
                 case "MEDIAN" -> System.out.println("Median");

@@ -45,4 +45,16 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "SELECT a.industry, COUNT(a.industry) FROM Account a JOIN Opportunity o ON o.decisionMaker = a.id WHERE o.status ='OPEN' GROUP BY a.industry")
     List<Object[]>OpportunityByIndustryStatusOpen();
+
+    @Query(value = "SELECT company_name, AVG(employee_count) FROM account GROUP BY company_name", nativeQuery = true)
+    List<Object[]> findMeanEmployeeCountQuantity();
+
+    @Query(value = "SELECT company_name, employee_count FROM account ORDER BY company_name, employee_count", nativeQuery = true)
+    List<Object[]> findMedianEmployeeCountQuantity();
+
+    @Query(value = "SELECT company_name, MAX(employee_count) FROM account GROUP BY company_name", nativeQuery = true)
+    List<Object[]> findMaxEmployeeCountQuantity();
+
+    @Query(value = "SELECT company_name, MIN(employee_count) FROM account GROUP BY company_name", nativeQuery = true)
+    List<Object[]> findMinEmployeeCountQuantity();
 }

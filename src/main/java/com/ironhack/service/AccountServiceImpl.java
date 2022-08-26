@@ -204,4 +204,50 @@ public class AccountServiceImpl implements AccountService {
         }
         tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
     }
+
+    @Override
+    public void meanEmployeeCountQuantity() {
+        var response = accountRepository.findMeanEmployeeCountQuantity();
+        String[][] data = new String[response.size()+1][2];
+        data[0][0] = "Company name";
+        data[0][1] = "Mean employees";
+        for (int i = 0; i < response.size(); i++) {
+            data[i+1][0] =response.get(i)[0].toString();
+            data[i+1][1] =response.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void medianEmployeeCountQuantity() {
+        //TODO
+        accountRepository.findMedianEmployeeCountQuantity();
+
+    }
+
+    @Override
+    public void maxEmployeeCountQuantity() {
+        var response = accountRepository.findMaxEmployeeCountQuantity();
+        String[][] data = new String[response.size()+1][2];
+        data[0][0] = "Company name";
+        data[0][1] = "Max employees";
+        for (int i = 0; i < response.size(); i++) {
+            data[i+1][0] =response.get(i)[0].toString();
+            data[i+1][1] =response.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
+
+    @Override
+    public void minEmployeeCountQuantity() {
+        var response = accountRepository.findMinEmployeeCountQuantity();
+        String[][] data = new String[response.size()+1][2];
+        data[0][0] = "Company name";
+        data[0][1] = "Max employees";
+        for (int i = 0; i < response.size(); i++) {
+            data[i+1][0] =response.get(i)[0].toString();
+            data[i+1][1] =response.get(i)[1].toString();
+        }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
+    }
 }

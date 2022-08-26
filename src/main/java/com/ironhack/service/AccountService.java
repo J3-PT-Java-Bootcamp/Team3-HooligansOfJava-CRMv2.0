@@ -32,4 +32,12 @@ public interface AccountService {
     void reportClosedLostByIndustry();
 
     void reportOpenByIndustry();
+
+    void meanEmployeeCountQuantity();
+
+    void medianEmployeeCountQuantity();
+
+    void maxEmployeeCountQuantity();
+
+    void minEmployeeCountQuantity();
 }
