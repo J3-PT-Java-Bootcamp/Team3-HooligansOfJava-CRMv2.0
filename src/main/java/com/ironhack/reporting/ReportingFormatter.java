@@ -1,4 +1,4 @@
 package com.ironhack.reporting;
 
-public class ReportingFormater {
+public class ReportingFormatter {
 }

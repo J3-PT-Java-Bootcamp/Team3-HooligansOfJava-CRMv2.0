@@ -10,6 +10,7 @@ import com.ironhack.enums.TypeOfProduct;
 import java.util.*;
 
 import com.ironhack.model.Lead;
+import com.ironhack.reporting.Reporting;
 import com.ironhack.service.*;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +45,7 @@ public class Menu {
 
         while (!exit) {
             List<String> options = Arrays.asList("New SalesRep","SalesRep Info","New lead", "Show leads", "Lookup Lead id", "Convert id",
-                    "Search opportunity by company name", "Edit opportunity", "Exit");
+                    "Search opportunity by company name", "Edit opportunity", "Reports", "Exit");
             option = consoleBuilder.listConsoleInput("Welcome to CRM. What would you like to do?", options);
             switch (option) {
                 case "NEW SALESREP" -> newSalesRep();
@@ -55,6 +56,7 @@ public class Menu {
                 case "CONVERT ID" -> convertId();
                 case "SEARCH OPPORTUNITY BY COMPANY NAME" -> searchOpportunityByCompanyName();
                 case "EDIT OPPORTUNITY" -> editOpportunity();
+                case "REPORTS" -> showReportsMenu();
                 case "EXIT" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -203,6 +205,11 @@ public class Menu {
         Opportunity updatedOpportunity = opportunityService.updateStatus(chosenOpportunity, OpportunityStatus.valueOf(newStatus));
 
         System.out.println("New status: " + updatedOpportunity.getStatus());
+    }
+
+    private void showReportsMenu() {
+        Reporting reports = new Reporting(consoleBuilder,salesRepService, leadService, opportunityService, contactService, accountService, productService);
+        reports.menu();
     }
 
     private Long[] getAllLeadIds(List<Lead> leadList) {
