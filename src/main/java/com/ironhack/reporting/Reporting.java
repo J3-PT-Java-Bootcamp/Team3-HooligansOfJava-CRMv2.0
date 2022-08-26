@@ -46,12 +46,13 @@ public class Reporting {
     }
 
     public void SalesRep() {
+        System.out.println("SalesRep");
         boolean exit = false;
         while (!exit) {
             List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
             String option = consoleBuilder.listConsoleInput("What sales report do you like?", options);
             switch (option) {
-                case "Report Lead" -> salesRepService.reportLead();
+                case "REPORT LEAD" -> salesRepService.reportLead();
                 case "REPORT OPPORTUNITY" -> salesRepService.reportOpportunity();
                 case "REPORT CLOSED-WON" -> salesRepService.reportClosedWon();
                 case "Report CLOSED-LOST" -> salesRepService.reportClosedLost();
