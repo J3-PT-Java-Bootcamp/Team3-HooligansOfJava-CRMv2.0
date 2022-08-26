@@ -1,0 +1,98 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Populate data" type="DatabaseScript">
+    <data-source id="4f803d70-825a-47be-a918-c527b65bcf35" namespace="schema/&quot;hooligans_crm&quot;" />
+    <script-text>INSERT INTO hooligans_crm.`sales_rep` VALUES (1, 'Joaquim');
+INSERT INTO hooligans_crm.`sales_rep` VALUES (2, 'Ana');
+INSERT INTO hooligans_crm.`sales_rep` VALUES (3, 'Eli');
+
+INSERT INTO hooligans_crm.`lead` VALUES (1, 'Truckler', 'malattia@outlook.com', 'Draven Jarvis', '(652) 370-6591', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (2, 'Trucck', 'josephw@msn.com', 'Tori Richardson', '(347) 725-4318', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (3, 'Truckroads', 'tubesteak@live.com', 'Victoria Schroeder', '(598) 388-5549', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (4, 'Truxxy', 'dhwon@me.com', 'Ezekiel Gay', '(537) 227-5997', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (5, 'Stacktruck', 'earmstro@gmail.com', 'Kimora Juarez', '(841) 336-8271', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (6, 'Truckier', 'wbarker@icloud.com', 'Ali Reid', '(252) 398-9009', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (7, 'Publictruck', 'jandrese@yahoo.ca', 'Kaleigh Smith', '(310) 609-9692', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (8, 'Truckexchange', 'tbusch@yahoo.ca', 'Joaquin Jennings', '(274) 741-5892', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (9, 'Twotrucks', 'epeeist@mac.com', 'Mckayla Hurley', '(847) 847-2945', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (10, 'Webstruck', 'dogdude@me.com', 'Alejandro Perkins', '(732) 266-9253', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (11, 'Bumpertruck', 'kostas@msn.com', 'Irene Harrington', '(938) 933-6043', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (12, 'Loaderr', 'fwiles@optonline.net', 'Amiya Cross', '(921) 823-3864', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (13, 'Traqor', 'wayward@att.net', 'Kierra Compton', '(685) 286-3204', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (14, 'Stilltrucking', 'stinson@gmail.com', 'Josh Leonard', '(897) 574-0616', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (15, 'Cabville', 'sonnen@att.net', 'Amir Vaughan', '(204) 938-8896', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (16, 'Loadee', 'jimmichie@outlook.com', 'Elisha Mcdowell', '(584) 671-5883', 2);
+INSERT INTO hooligans_crm.`lead` VALUES (17, 'Wagonn', 'tangsh@gmail.com', 'Kobe Cortez', '(709) 359-0614', 1);
+INSERT INTO hooligans_crm.`lead` VALUES (18, 'Loadville', 'fangorn@comcast.net', 'Eddie Newman', '(218) 717-0758', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (19, 'Cargro', 'evans@me.com', 'Alfonso Russo', '(675) 794-4263', 3);
+INSERT INTO hooligans_crm.`lead` VALUES (20, 'Bulqy', 'bader@msn.com', 'Lorelai Perry', '(983) 819-7998', 2);
+
+INSERT INTO hooligans_crm.`account` VALUES (1, 'Baidoa', 'Truckler', 'Somalia', 1142, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (2, 'Caucaia', 'Trucck', 'Brazil', 1011, 'ECOMMERCE');
+INSERT INTO hooligans_crm.`account` VALUES (3, 'Jundiaí', 'Truckroads', 'Brazil', 727, 'MANUFACTURING');
+INSERT INTO hooligans_crm.`account` VALUES (4, 'Breda', 'Truxxy', 'Netherlands', 463, 'MEDICAL');
+INSERT INTO hooligans_crm.`account` VALUES (5, 'Eilat', 'Stacktruck', 'Israel', 1135, 'OTHER');
+INSERT INTO hooligans_crm.`account` VALUES (6, 'Brussels', 'Truckier', 'Belgium', 1129, 'MEDICAL');
+INSERT INTO hooligans_crm.`account` VALUES (7, 'Constantine', 'Publictruck', 'Algeria', 819, 'MANUFACTURING');
+INSERT INTO hooligans_crm.`account` VALUES (8, 'Alanya', 'Truckexchange', 'Turkey', 566, 'MEDICAL');
+INSERT INTO hooligans_crm.`account` VALUES (9, 'Beauvais', 'Twotrucks', 'France', 379, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (10, 'Gilbert', 'Webstruck', 'United States', 631, 'MANUFACTURING');
+INSERT INTO hooligans_crm.`account` VALUES (11, 'Lichuan', 'Bumpertruck', 'China', 865, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (12, 'Udaipur', 'Loaderr', 'India', 613, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (13, 'Liaocheng', 'Traqor', 'China', 436, 'MEDICAL');
+INSERT INTO hooligans_crm.`account` VALUES (14, 'Várzea Grande', 'Stilltrucking', 'Brazil', 1007, 'ECOMMERCE');
+INSERT INTO hooligans_crm.`account` VALUES (15, 'Saidpur', 'Cabville', 'Bangladesh', 1131, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (16, 'Raqqa', 'Loadee', 'Syria', 473, 'PRODUCE');
+INSERT INTO hooligans_crm.`account` VALUES (17, 'Xiangtan', 'Wagonn', 'China', 784, 'OTHER');
+INSERT INTO hooligans_crm.`account` VALUES (18, 'Richmond Hill', 'Loadville', 'Canada', 450, 'ECOMMERCE');
+INSERT INTO hooligans_crm.`account` VALUES (19, 'Sincelejo', 'Cargro', 'Colombia', 370, 'MEDICAL');
+INSERT INTO hooligans_crm.`account` VALUES (20, 'Islamabad', 'Bulqy', 'Pakistan', 393, 'MANUFACTURING');
+
+INSERT INTO hooligans_crm.`contact` VALUES (1, 'malattia@outlook.com', 'Draven Jarvis', '(652) 370-6591', 1);
+INSERT INTO hooligans_crm.`contact` VALUES (2, 'josephw@msn.com', 'Tori Richardson', '(347) 725-4318', 2);
+INSERT INTO hooligans_crm.`contact` VALUES (3, 'tubesteak@live.com', 'Victoria Schroeder', '(598) 388-5549', 3);
+INSERT INTO hooligans_crm.`contact` VALUES (4, 'dhwon@me.com', 'Ezekiel Gay', '(537) 227-5997', 4);
+INSERT INTO hooligans_crm.`contact` VALUES (5, 'earmstro@gmail.com', 'Kimora Juarez', '(841) 336-8271', 5);
+INSERT INTO hooligans_crm.`contact` VALUES (6, 'wbarker@icloud.com', 'Ali Reid', '(252) 398-9009', 6);
+INSERT INTO hooligans_crm.`contact` VALUES (7, 'jandrese@yahoo.ca', 'Kaleigh Smith', '(310) 609-9692', 7);
+INSERT INTO hooligans_crm.`contact` VALUES (8, 'tbusch@yahoo.ca', 'Joaquin Jennings', '(274) 741-5892', 8);
+INSERT INTO hooligans_crm.`contact` VALUES (9, 'epeeist@mac.com', 'Mckayla Hurley', '(847) 847-2945', 9);
+INSERT INTO hooligans_crm.`contact` VALUES (10, 'dogdude@me.com', 'Alejandro Perkins', '(732) 266-9253', 10);
+INSERT INTO hooligans_crm.`contact` VALUES (11, 'kostas@msn.com', 'Irene Harrington', '(938) 933-6043', 11);
+INSERT INTO hooligans_crm.`contact` VALUES (12, 'fwiles@optonline.net', 'Amiya Cross', '(921) 823-3864', 12);
+INSERT INTO hooligans_crm.`contact` VALUES (13, 'wayward@att.net', 'Kierra Compton', '(685) 286-3204', 13);
+INSERT INTO hooligans_crm.`contact` VALUES (14, 'stinson@gmail.com', 'Josh Leonard', '(897) 574-0616', 14);
+INSERT INTO hooligans_crm.`contact` VALUES (15, 'sonnen@att.net', 'Amir Vaughan', '(204) 938-8896', 15);
+INSERT INTO hooligans_crm.`contact` VALUES (16, 'jimmichie@outlook.com', 'Elisha Mcdowell', '(584) 671-5883', 16);
+INSERT INTO hooligans_crm.`contact` VALUES (17, 'tangsh@gmail.com', 'Kobe Cortez', '(709) 359-0614', 17);
+INSERT INTO hooligans_crm.`contact` VALUES (18, 'fangorn@comcast.net', 'Eddie Newman', '(218) 717-0758', 18);
+INSERT INTO hooligans_crm.`contact` VALUES (19, 'evans@me.com', 'Alfonso Russo', '(675) 794-4263', 19);
+INSERT INTO hooligans_crm.`contact` VALUES (20, 'bader@msn.com', 'Lorelai Perry', '(983) 819-7998', 20);
+
+INSERT INTO hooligans_crm.`opportunity` VALUES (1, 'CLOSED_LOST', 20, 1);
+INSERT INTO hooligans_crm.`opportunity` VALUES (2, 'CLOSED_WON', 7, 2);
+INSERT INTO hooligans_crm.`opportunity` VALUES (3, 'CLOSED_LOST', 11, 3);
+INSERT INTO hooligans_crm.`opportunity` VALUES (4, 'OPEN', 17, 1);
+INSERT INTO hooligans_crm.`opportunity` VALUES (5, 'OPEN', 2, 2);
+INSERT INTO hooligans_crm.`opportunity` VALUES (6, 'CLOSED_WON', 13, 3);
+INSERT INTO hooligans_crm.`opportunity` VALUES (7, 'OPEN', 1, 3);
+INSERT INTO hooligans_crm.`opportunity` VALUES (8, 'CLOSED_WON', 18, 3);
+INSERT INTO hooligans_crm.`opportunity` VALUES (9, 'CLOSED_LOST', 3, 2);
+INSERT INTO hooligans_crm.`opportunity` VALUES (10, 'CLOSED_LOST', 14, 2);
+INSERT INTO hooligans_crm.`opportunity` VALUES (11, 'OPEN', 9, 2);
+INSERT INTO hooligans_crm.`opportunity` VALUES (12, 'CLOSED_WON', 6, 2);
+
+INSERT INTO hooligans_crm.`product` VALUES (1, 'FLATBED', 7, 1);
+INSERT INTO hooligans_crm.`product` VALUES (2, 'HYBRID', 2, 2);
+INSERT INTO hooligans_crm.`product` VALUES (3, 'BOX', 2, 3);
+INSERT INTO hooligans_crm.`product` VALUES (4, 'FLATBED', 10, 4);
+INSERT INTO hooligans_crm.`product` VALUES (5, 'BOX', 3, 5);
+INSERT INTO hooligans_crm.`product` VALUES (6, 'FLATBED', 3, 6);
+INSERT INTO hooligans_crm.`product` VALUES (7, 'HYBRID', 6, 7);
+INSERT INTO hooligans_crm.`product` VALUES (8, 'BOX', 2, 8);
+INSERT INTO hooligans_crm.`product` VALUES (9, 'BOX', 3, 9);
+INSERT INTO hooligans_crm.`product` VALUES (10, 'FLATBED', 4, 10);
+INSERT INTO hooligans_crm.`product` VALUES (11, 'FLATBED', 8, 11);
+INSERT INTO hooligans_crm.`product` VALUES (12, 'BOX', 7, 12);</script-text>
+    <method v="2" />
+  </configuration>
+</component>
