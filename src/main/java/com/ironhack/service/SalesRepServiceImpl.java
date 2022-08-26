@@ -1,10 +1,12 @@
 package com.ironhack.service;
 
 import com.ironhack.model.SalesRep;
+import com.ironhack.reporting.tableWithLinesAndMaxWidth;
 import com.ironhack.repository.SalesRepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,11 +34,16 @@ public class SalesRepServiceImpl implements SalesRepService{
 
     @Override
     public void reportLead() {
-        String response = "";
-        var aaaaa = salesRepRepository.groupByName();
-        for (Object[] objects : aaaaa) {
-            System.out.println(objects[0] + " " + objects[1]);
+
+        var salesRepResponse = salesRepRepository.groupByName();
+        String[][] data = new String[salesRepResponse.size()+1][2];
+        data[0][0] = "SalesRep";
+        data[0][1] = "Leads";
+        for (int i = 0; i < salesRepResponse.size(); i++) {
+            data[i+1][0] =salesRepResponse.get(i)[0].toString();
+            data[i+1][1] =salesRepResponse.get(i)[1].toString();
         }
+        tableWithLinesAndMaxWidth.tableWithLinesAndMaxWidth(data);
 
     }
 
