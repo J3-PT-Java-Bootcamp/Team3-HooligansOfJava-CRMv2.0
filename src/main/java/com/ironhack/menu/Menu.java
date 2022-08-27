@@ -167,7 +167,7 @@ public class Menu {
                 }
             }
 
-            Opportunity opportunity = opportunityService.newOpportunity(productList, contact);
+            Opportunity opportunity = opportunityService.newOpportunity(productList, contact, lead.getSalesRep());
 
 
             List<String> options = Arrays.asList("PRODUCE", "ECOMMERCE", "MANUFACTURING", "MEDICAL", "OTHER");

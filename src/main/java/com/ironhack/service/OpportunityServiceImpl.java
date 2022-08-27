@@ -1,10 +1,7 @@
 package com.ironhack.service;
 
 import com.ironhack.enums.OpportunityStatus;
-import com.ironhack.model.Account;
-import com.ironhack.model.Contact;
-import com.ironhack.model.Opportunity;
-import com.ironhack.model.Product;
+import com.ironhack.model.*;
 import com.ironhack.repository.OpportunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +18,12 @@ public class OpportunityServiceImpl implements OpportunityService {
     OpportunityRepository opportunityRepository;
 
     @Override
-    public Opportunity newOpportunity(ArrayList<Product> productList, Contact contact) {
+    public Opportunity newOpportunity(ArrayList<Product> productList, Contact contact, SalesRep salesRep) {
         Opportunity opportunity = new Opportunity();
         opportunity.setStatus(OPEN);
         opportunity.setProducts(productList);
         opportunity.setDecisionMaker(contact);
+        opportunity.setSalesRep(salesRep);
         return opportunityRepository.save(opportunity);
     }
 
