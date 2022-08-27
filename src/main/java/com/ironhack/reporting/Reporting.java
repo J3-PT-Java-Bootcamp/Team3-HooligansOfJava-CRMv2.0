@@ -51,11 +51,11 @@ public class Reporting {
             List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
             String option = consoleBuilder.listConsoleInput("What sales report do you like?", options);
             switch (option) {
-                case "Report Lead" -> salesRepService.reportLead();
+                case "REPORT LEAD" -> salesRepService.reportLead();
                 case "REPORT OPPORTUNITY" -> salesRepService.reportOpportunity();
                 case "REPORT CLOSED-WON" -> salesRepService.reportClosedWon();
-                case "Report CLOSED-LOST" -> salesRepService.reportClosedLost();
-                case "Report OPEN" ->salesRepService.reportOpen();
+                case "REPORT CLOSED-LOST" -> salesRepService.reportClosedLost();
+                case "REPORT OPEN" ->salesRepService.reportOpen();
                 case "BACK" -> exit = true;
                 default -> System.out.println(option);
             }
@@ -69,11 +69,11 @@ public class Reporting {
             List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
             String option = consoleBuilder.listConsoleInput("What product report do you like?", options);
             switch (option) {
-                case "Report Lead " -> System.out.println("Report Lead");
+                case "REPORT LEAD " -> System.out.println("Report Lead");
                 case "REPORT OPPORTUNITY" -> System.out.println("Report Opportunity");
                 case "REPORT CLOSED-WON" -> System.out.println("Report CLOSED-WON");
-                case "Report CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
-                case "Report OPEN" -> System.out.println("Report OPEN");
+                case "REPORT CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
+                case "REPORT OPEN" -> System.out.println("Report OPEN");
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
@@ -112,7 +112,6 @@ public class Reporting {
                 default -> System.out.println("Choose a correct option.");
             }
         }
-
     }
 
     public void Industry() {
@@ -147,7 +146,6 @@ public class Reporting {
                 default -> System.out.println("Choose a correct option.");
             }
         }
-
     }
 
     public void Quantity() {
@@ -182,6 +180,4 @@ public class Reporting {
         }
 
     }
-
-
 }
