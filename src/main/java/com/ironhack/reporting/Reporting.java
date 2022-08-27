@@ -66,14 +66,13 @@ public class Reporting {
     public void Product() {
         boolean exit = false;
         while (!exit) {
-            List<String> options = Arrays.asList("Report Lead", "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
-            String option = consoleBuilder.listConsoleInput("What product report do you like?", options);
+            List<String> options = Arrays.asList( "Report Opportunity", "Report CLOSED-WON", "Report CLOSED-LOST", "Report OPEN", "Back");
+            String option = consoleBuilder.listConsoleInput("What country report do you like?", options);
             switch (option) {
-                case "REPORT LEAD " -> System.out.println("Report Lead");
-                case "REPORT OPPORTUNITY" -> System.out.println("Report Opportunity");
-                case "REPORT CLOSED-WON" -> System.out.println("Report CLOSED-WON");
-                case "REPORT CLOSED-LOST" -> System.out.println("Report CLOSED-LOST");
-                case "REPORT OPEN" -> System.out.println("Report OPEN");
+                case "REPORT OPPORTUNITY" -> productService.reportOpportunity();
+                case "REPORT CLOSED-WON" -> productService.reportClosedWon();
+                case "REPORT CLOSED-LOST" -> productService.reportClosedLost();
+                case "REPORT OPEN" ->productService.reportOpen();
                 case "BACK" -> exit = true;
                 default -> System.out.println("Choose a correct option.");
             }
