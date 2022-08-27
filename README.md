@@ -32,7 +32,7 @@ _____
 ----
 ## 👁️‍🗨️ Diagramas
 
-![](../../Desktop/diagramas de clases.png)
+![Case diagram](src/main/java/com/ironhack/img/crm_case_diagram2.png?raw=true "Case diagram")
 
 
 _____
@@ -75,4 +75,4 @@ test: contiene las clases que brindan la testeabilidad de la aplicación.
 
 -----
 
-![img.png](img.png)
+![Thank you!](src/main/java/com/ironhack/img/thank_you.gif?raw=true "Gracias")
